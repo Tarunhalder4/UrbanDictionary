@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">UrbanDictionary</string>
+
+    <string name="resistor_successfully">Your Resister Successfully</string>
+    <string name="resistor_failed">Your Resistor Failed</string>
+    <string name="login_successfully">Your Login Successfully</string>
+    <string name="login_failed">Your Login Failed</string>
+
+    <string name="please_entry_name">Please Entry Name</string>
+    <string name="please_entry_email">Please Entry Email</string>
+    <string name="please_entry_password">Please Entry Password</string>
+    <string name="please_entry_conform_password">Please Entry Conform Password</string>
+    <string name="please_entry_work">Please Entry Work</string>
+    <string name="please_entry_age">Please Entry Age</string>
+    <string name="password_and_conform_password_not_match">Password And Conform Password Not Match</string>
+
+    <string name="submit">Submit</string>
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="age">Age</string>
+    <string name="password">Password</string>
+    <string name="conform_password">Conform Password</string>
+    <string name="work">Work</string>
+
+
+</resources>
