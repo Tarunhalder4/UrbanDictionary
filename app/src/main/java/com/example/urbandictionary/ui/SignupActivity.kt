@@ -1,4 +1,4 @@
-package com.example.urbandictionary
+package com.example.urbandictionary.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.urbandictionary.Extension.showMessage
+import com.example.urbandictionary.R
+import com.example.urbandictionary.Repository
+import com.example.urbandictionary.data.Result
 import com.example.urbandictionary.databinding.ActivitySignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,7 +25,7 @@ class SignupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_signup)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_signup)
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
         binding.submit.setOnClickListener {
@@ -77,7 +80,7 @@ class SignupActivity : AppCompatActivity() {
                     clearAllField()
                     binding.progress.visibility = View.GONE
                     this.showMessage(this.getString(R.string.resistor_successfully))
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                 }
                 else ->{
                     binding.progress.visibility = View.GONE

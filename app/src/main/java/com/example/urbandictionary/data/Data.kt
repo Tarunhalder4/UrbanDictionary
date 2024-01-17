@@ -1,4 +1,4 @@
-package com.example.urbandictionary
+package com.example.urbandictionary.data
 
 data class Data(
     val author: String,

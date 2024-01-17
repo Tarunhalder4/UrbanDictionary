@@ -1,4 +1,4 @@
-package com.example.urbandictionary
+package com.example.urbandictionary.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,8 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.urbandictionary.Extension.showMessage
+import com.example.urbandictionary.R
+import com.example.urbandictionary.data.Result
 import com.example.urbandictionary.databinding.ActivityLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var viewModel: AuthViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_login)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
@@ -51,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 Result.SUCCESS ->{
                     binding.progress.visibility = View.GONE
                     this.showMessage(getString(R.string.resistor_successfully))
-                    startActivity(Intent(this,MainActivity::class.java))
+                    startActivity(Intent(this, MainActivity::class.java))
                 }else ->{
                     binding.progress.visibility = View.GONE
                     this.showMessage(getString(R.string.resistor_failed)+" "+it.errorP )

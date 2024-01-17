@@ -1,23 +1,25 @@
 package com.example.urbandictionary
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.urbandictionary.data.ResponseData
+import com.example.urbandictionary.data.Result
+import com.example.urbandictionary.data.Status
 import com.google.firebase.auth.FirebaseAuth
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
-
-class Repository @Inject constructor(){
+class Repository @Inject constructor(val service: Service){
 
     @Inject
     lateinit var auth: FirebaseAuth
     private val resistorStatus: MutableLiveData<Status<Boolean>> = MutableLiveData<Status<Boolean>>()
     private val loginStatus: MutableLiveData<Status<Boolean>> = MutableLiveData<Status<Boolean>>()
-
-    public fun getResistorStatus():MutableLiveData<Status<Boolean>>{
-        return resistorStatus
-    }
-
-    public fun getLoginStatus():MutableLiveData<Status<Boolean>>{
-        return loginStatus
-    }
+    private val defineStatus: MutableLiveData<Status<ResponseData?>> = MutableLiveData<Status<ResponseData?>>()
+    public fun getResistorStatus() = resistorStatus
+    public fun getLoginStatus() = loginStatus
+    public fun getDefineStatus()= defineStatus
 
     suspend fun resistor(email:String,password:String){
         resistorStatus.postValue(Status.Loading(Result.LOADING))
@@ -41,6 +43,19 @@ class Repository @Inject constructor(){
         }
     }
 
+    suspend fun getDefineData(term:String){
+        defineStatus.postValue(Status.Loading(Result.LOADING))
+        service.getDefine(term).enqueue(object : Callback<ResponseData>{
+            override fun onResponse(call: Call<ResponseData>, response: Response<ResponseData>) {
+                Log.d("tarun", "defineStatus: ${response.body()?.list.toString()}")
+                defineStatus.postValue(Status.Success(Result.SUCCESS,response.body()))
+            }
+
+            override fun onFailure(call: Call<ResponseData>, t: Throwable) {
+                defineStatus.postValue(Status.Error(Result.ERROR,t.message.toString()))
+            }
+        })
+    }
 
 
 

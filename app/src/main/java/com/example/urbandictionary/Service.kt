@@ -1,13 +1,19 @@
 package com.example.urbandictionary
 
+import com.example.urbandictionary.data.ResponseData
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Query
 
 interface Service {
 
 
     @GET("/define")
-    fun getDefine():Call<ResponseData>
+    @Headers(
+        "X-RapidAPI-Key: d8edeb566dmshc5ec050ed8cf301p137f83jsn26421ea8eff0",
+        "X-RapidAPI-Host: mashape-community-urban-dictionary.p.rapidapi.com")
+    fun getDefine(@Query("term") term:String):Call<ResponseData>
 
 
 

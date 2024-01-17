@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="data"
+            type="com.example.urbandictionary.data.Data" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/definition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.definition}"
+                    android:textSize="20dp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/green"
+                    tool:text="defination"/>
+
+                <TextView
+                    android:id="@+id/permalink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="5dp"
+                    android:textColor="@color/red"
+                    tool:text="permal link"
+                    />
+
+                <TextView
+                    android:id="@+id/thumbs_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(data.thumbs_up)}"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    tool:text="thumbs up"/>
+
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.author}"
+                    android:textSize="10dp"
+                    android:textColor="@color/blue"
+                    tool:text="author"/>
+
+                <TextView
+                    android:id="@+id/word"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.word}"
+                    android:textSize="15dp"
+                    android:textColor="@color/red"
+                    tool:text="word"
+                    />
+
+                <TextView
+                    android:id="@+id/defid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(data.defid)}"
+                    android:textSize="5dp"
+                    android:textColor="@color/black"
+                    tool:text="defid"
+                    />
+
+                <TextView
+                    android:id="@+id/written_on"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.written_on}"
+                    android:textSize="5dp"
+                    android:textColor="@color/red"
+                    tool:text="written on"
+                    />
+
+                <TextView
+                    android:id="@+id/example"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.example}"
+                    android:textSize="8dp"
+                    android:textColor="@color/green"
+                    tool:text="example"/>
+
+                <TextView
+                    android:id="@+id/thumbs_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(data.thumbs_down)}"
+                    android:textSize="5dp"
+                    android:textColor="@color/black"
+                    tool:text="thumbs Down"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
