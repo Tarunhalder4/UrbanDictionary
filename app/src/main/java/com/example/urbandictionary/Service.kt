@@ -11,8 +11,6 @@ interface Service {
 
     @GET("/define")
     @Headers(
-//        "X-RapidAPI-Key: d8edeb566dmshc5ec050ed8cf301p137f83jsn26421ea8eff0",
-//        "X-RapidAPI-Host: mashape-community-urban-dictionary.p.rapidapi.com"
         "${Util.X_RapidAPI_KEY}:${Util.X_RapidAPI_KEY_VALUE}",
         "${Util.X_RapidAPI_HOST}:${Util.X_RapidAPI_KEY_HOST_VALUE}"
     )
