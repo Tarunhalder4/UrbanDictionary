@@ -1,9 +1,13 @@
 package com.example.urbandictionary
 
+import retrofit2.Call
+import retrofit2.http.GET
+
 interface Service {
 
 
-    fun getDefine()
+    @GET("/define")
+    fun getDefine():Call<ResponseData>
 
 
 

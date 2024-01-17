@@ -11,11 +11,17 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(application: Application,private val repository: Repository):AndroidViewModel(application) {
 
-    val resistorStatus:MutableLiveData<Status<Boolean>> = repository.getStatus()
+    val resistorStatus:MutableLiveData<Status<Boolean>> = repository.getResistorStatus()
+    val loginStatus:MutableLiveData<Status<Boolean>> = repository.getLoginStatus()
 
     fun resistorUser(email:String,password:String)=
         viewModelScope.launch {
             repository.resistor(email, password)
+        }
+
+    fun loginUser(email:String,password:String)=
+        viewModelScope.launch {
+            repository.login(email, password)
         }
 
 }

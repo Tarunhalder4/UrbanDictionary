@@ -1,14 +1,15 @@
 package com.example.urbandictionary
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.urbandictionary.Extension.showMessage
 import com.example.urbandictionary.databinding.ActivitySignupBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class SignupActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class SignupActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
         binding.submit.setOnClickListener {
-            signUp(binding)
+            signUp()
         }
 
         signUpStatus()
@@ -33,7 +34,7 @@ class SignupActivity : AppCompatActivity() {
     }
 
 
-    private fun signUp(binding:ActivitySignupBinding){
+    private fun signUp(){
         if(!binding.name.text.toString().isEmpty()){
             if(!binding.age.text.toString().isEmpty()){
                 if(!binding.work.text.toString().isEmpty()){
@@ -43,25 +44,25 @@ class SignupActivity : AppCompatActivity() {
                                 if (binding.password.text.toString() == binding.conformPassword.text.toString()) {
                                     viewModel.resistorUser(binding.email.text.toString(),binding.password.text.toString())
                                 } else {
-                                    Util.showMessage(this@SignupActivity,this.getString(R.string.password_and_conform_password_not_match))
+                                    this.showMessage(getString(R.string.password_and_conform_password_not_match))
                                 }
                             }else{
-                                Util.showMessage(this@SignupActivity,this.getString(R.string.please_entry_conform_password))
+                                this.showMessage(getString(R.string.please_entry_conform_password))
                             }
                         }else{
-                            Util.showMessage(this@SignupActivity,this.getString(R.string.please_entry_password))
+                            this.showMessage(getString(R.string.please_entry_password))
                         }
                         }else{
-                            Util.showMessage(this@SignupActivity,this.getString(R.string.please_entry_email))
+                        this.showMessage(getString(R.string.please_entry_email))
                         }
                 }else{
-                    Util.showMessage(this@SignupActivity,this.getString(R.string.please_entry_work))
+                    this.showMessage(getString(R.string.please_entry_work))
                 }
             }else{
-                Util.showMessage(this@SignupActivity,this.getString(R.string.please_entry_age))
+                this.showMessage(getString(R.string.please_entry_age))
             }
         }else{
-            Util.showMessage(this@SignupActivity,this.getString(R.string.please_entry_name))
+            this.showMessage(getString(R.string.please_entry_name))
         }
 
     }
@@ -73,16 +74,27 @@ class SignupActivity : AppCompatActivity() {
                     binding.progress.visibility = View.VISIBLE
                 }
                 Result.SUCCESS ->{
+                    clearAllField()
                     binding.progress.visibility = View.GONE
-                    Util.showMessage(this,this.getString(R.string.resistor_successfully))
+                    this.showMessage(this.getString(R.string.resistor_successfully))
+                    startActivity(Intent(this,MainActivity::class.java))
                 }
                 else ->{
                     binding.progress.visibility = View.GONE
-                    Util.showMessage(this,this.getString(R.string.resistor_failed)+" "+it.errorP )
+                    this.showMessage(this.getString(R.string.resistor_failed)+" "+it.errorP )
                 }
             }
         }
 
+    }
+
+    private fun clearAllField(){
+        binding.name.text?.clear()
+        binding.age.text?.clear()
+        binding.work.text?.clear()
+        binding.email.text?.clear()
+        binding.password.text?.clear()
+        binding.conformPassword.text?.clear()
     }
 
 
