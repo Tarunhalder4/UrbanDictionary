@@ -6,4 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 object Util {
 
+    const val MY_PREFERENCE = "myPreference"
+
+
+
+
 }

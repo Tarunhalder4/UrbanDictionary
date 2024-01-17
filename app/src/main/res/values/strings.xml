@@ -23,5 +23,7 @@
     <string name="conform_password">Conform Password</string>
     <string name="work">Work</string>
 
+    <string name="logout">Logout</string>
+
 
 </resources>

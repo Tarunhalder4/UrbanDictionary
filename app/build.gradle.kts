@@ -77,4 +77,7 @@ dependencies {
     ////////////view model coroutines
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelCoroutines")
 
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+//    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha03"
+
 }

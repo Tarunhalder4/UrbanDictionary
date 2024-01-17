@@ -1,9 +1,12 @@
 package com.example.urbandictionary
 
+import android.content.Context
+import android.content.SharedPreferences
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -37,5 +40,12 @@ class Module {
     fun getDefineService(retrofit: Retrofit):Service{
         return retrofit.create(Service::class.java)
     }
+
+    @Provides
+    @Singleton
+    fun getSharePreference(@ApplicationContext context: Context):SharedPreferences{
+        return context.getSharedPreferences(Util.MY_PREFERENCE,Context.MODE_PRIVATE)
+    }
+
 
 }

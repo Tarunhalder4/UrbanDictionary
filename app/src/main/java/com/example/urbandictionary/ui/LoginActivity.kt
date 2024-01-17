@@ -10,18 +10,27 @@ import com.example.urbandictionary.Extension.showMessage
 import com.example.urbandictionary.R
 import com.example.urbandictionary.data.Result
 import com.example.urbandictionary.databinding.ActivityLoginBinding
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityLoginBinding
     private lateinit var viewModel: AuthViewModel
+    @Inject
+    lateinit var auth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+
+        if(auth.currentUser != null) {
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
 
         binding.submit.setOnClickListener {
             login(binding)
