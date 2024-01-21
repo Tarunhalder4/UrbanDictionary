@@ -15,6 +15,8 @@
     <string name="password_and_conform_password_not_match">Password And Conform Password Not Match</string>
 
     <string name="submit">Submit</string>
+    <string name="go_to_logIn">Go to logIn</string>
+    <string name="go_to_signup">Go to Sign UP</string>
 
     <string name="name">Name</string>
     <string name="email">Email</string>
@@ -22,6 +24,9 @@
     <string name="password">Password</string>
     <string name="conform_password">Conform Password</string>
     <string name="work">Work</string>
+
+    <string name="save_data_firebase">Save Data In Fire Base</string>
+    <string name="save_data_room_database">Save Data In Room Data Base</string>
 
     <string name="logout">Logout</string>
 

@@ -46,12 +46,11 @@ android {
 }
 
 dependencies {
-
-
     val daggerVersion = "2.50"
     val retrofitVersion = "2.9.0"
     val firebaseAuth = "22.3.0"
     val viewModelCoroutines = "2.7.0"
+    val roomVersion = "2.6.1"
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -73,11 +72,14 @@ dependencies {
 
     ////firebase auth
     implementation("com.google.firebase:firebase-auth:$firebaseAuth")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-database")
 
     ////////////view model coroutines
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelCoroutines")
 
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
-//    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha03"
+    /////////////room database
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
 
 }

@@ -17,55 +17,69 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: AuthViewModel
+
     @Inject
-    lateinit var auth:FirebaseAuth
+    lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
 
-        if(auth.currentUser != null) {
-            startActivity(Intent(this,MainActivity::class.java))
+        if (auth.currentUser != null) {
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
-        binding.submit.setOnClickListener {
-            login(binding)
-        }
-
+        buttonClick()
         loginStatus()
 
     }
 
-    private fun login(binding: ActivityLoginBinding){
-        if(!binding.email.text.toString().isEmpty()){
-            if(!binding.password.text.toString().isEmpty()){
-                viewModel.loginUser(binding.email.text.toString(),binding.password.text.toString())
-            }else{
+    private fun buttonClick() {
+        binding.submit.setOnClickListener {
+            login()
+        }
+
+        binding.goToSignup.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
+            finish()
+        }
+
+    }
+
+    private fun login() {
+        if (!binding.email.text.toString().isEmpty()) {
+            if (!binding.password.text.toString().isEmpty()) {
+                viewModel.loginUser(binding.email.text.toString(), binding.password.text.toString())
+            } else {
                 this.showMessage(getString(R.string.please_entry_password))
             }
-        }else{
+        } else {
 
             this.showMessage(getString(R.string.please_entry_email))
         }
     }
 
     private fun loginStatus() {
-        viewModel.loginStatus.observe(this){
-            when(it.status){
-                Result.LOADING ->{
+        viewModel.loginStatus.observe(this) {
+            when (it.status) {
+                Result.LOADING -> {
                     binding.progress.visibility = View.VISIBLE
                 }
-                Result.SUCCESS ->{
+
+                Result.SUCCESS -> {
                     binding.progress.visibility = View.GONE
                     this.showMessage(getString(R.string.resistor_successfully))
                     startActivity(Intent(this, MainActivity::class.java))
-                }else ->{
+                    finish()
+                }
+
+                else -> {
                     binding.progress.visibility = View.GONE
-                    this.showMessage(getString(R.string.resistor_failed)+" "+it.errorP )
+                    this.showMessage(getString(R.string.resistor_failed) + " " + it.errorP)
                 }
 
             }
@@ -73,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
-
 
 
 }

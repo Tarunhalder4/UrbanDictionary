@@ -12,11 +12,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(application: Application, private val repository: Repository):AndroidViewModel(application) {
+class MainViewModel @Inject constructor(
+    application: Application,
+    private val repository: Repository
+) : AndroidViewModel(application) {
 
-    val defineStatus:MutableLiveData<Status<ResponseData?>> = repository.getDefineStatus()
+    val defineStatus: MutableLiveData<Status<ResponseData?>> = repository.getDefineStatus()
 
-    fun getDefineData(term:String){
+    fun getDefineData(term: String) {
         viewModelScope.launch {
             repository.getDefineData(term)
         }
