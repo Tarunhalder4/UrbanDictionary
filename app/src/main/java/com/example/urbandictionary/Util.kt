@@ -9,5 +9,4 @@ object Util {
     const val MY_PREFERENCE = "myPreference"
 
 
-
 }
